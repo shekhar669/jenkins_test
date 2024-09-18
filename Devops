@@ -1,0 +1,645 @@
+#Welcome to Advanced devops Training
+
+https://remotelabs.palmeto.co.in
+ 
+
+1	https://lab.palmeto.co.in	Optum-Devops01	P@lmeto@123 -- Achhay
+2	https://lab.palmeto.co.in	Optum-Devops02	P@lmeto@123 -- Arjun
+3	https://lab.palmeto.co.in	Optum-Devops03	P@lmeto@123 -- Suresh
+4	https://lab.palmeto.co.in	Optum-Devops04	P@lmeto@123 -- Saumya
+5	https://lab.palmeto.co.in	Optum-Devops05	P@lmeto@123 -- Ajay
+6	https://lab.palmeto.co.in	Optum-Devops06	P@lmeto@123 -- Shubham
+7	https://lab.palmeto.co.in	Optum-Devops07	P@lmeto@123 -- Srichand
+8	https://lab.palmeto.co.in	Optum-Devops08	P@lmeto@123 -- Vibhuti
+9	https://lab.palmeto.co.in	Optum-Devops09	P@lmeto@123 -- Shekhar
+10	https://lab.palmeto.co.in	Optum-Devops10	P@lmeto@123 -- Devansh
+11	https://lab.palmeto.co.in	Optum-Devops11	P@lmeto@123 -- Neha kumari
+12	https://lab.palmeto.co.in	Optum-Devops12	P@lmeto@123 -- Uday
+13	https://lab.palmeto.co.in	Optum-Devops13	P@lmeto@123 -- Soma
+14	https://lab.palmeto.co.in	Optum-Devops14	P@lmeto@123 -- Ravi Prakash
+15	https://lab.palmeto.co.in	Optum-Devops15	P@lmeto@123 -- Rakesh
+16	https://lab.palmeto.co.in	Optum-Devops16	P@lmeto@123 -- Maneesh
+17	https://lab.palmeto.co.in	Optum-Devops17	Palmeto@123 -- Shobhit
+18	https://lab.palmeto.co.in	Optum-Devops18	P@lmeto@123 -- Sudhir
+19	https://lab.palmeto.co.in	Optum-Devops19	P@lmeto@123 -- Raj
+20	https://lab.palmeto.co.in	Optum-Devops20	P@lmeto@123 -- Vergel Victorio
+21	https://lab.palmeto.co.in	Optum-Devops21	P@lmeto@123 -- Sandeep
+22	https://lab.palmeto.co.in	Optum-Devops22	P@lmeto@123
+23	https://lab.palmeto.co.in	Optum-Devops23	P@lmeto@123
+
+# install and configure jenkins
+## install latest patches
+sudo su
+apt update
+apt upgrade -y
+
+## install java 21
+apt install openjdk-21-jdk -y
+
+## install jenkins
+wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+apt update
+apt install jenkins -y
+
+## check the status of jenkins service
+systemctl status jenkins
+
+## jenkins installation dir
+cd /var/lib/jenkins
+ls -l
+
+## stop the vm in virtualbox
+ubuntu01 -- right click -- stop
+
+## enable host only adapter
+setting -- network -- adapter2 -- enable-- Host-only adapter -- start
+
+## access jenkins 
+http://192.168.5.116:8080/
+
+## get inial admin password
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+https://lab.palmeto.co.in
+https://remotelabs.palmeto.co.in
+
+## fork a repo 
+https://github.com/sathishbob/jenkins_test
+
+## generate a key pair on jenkins
+ssh-keygen
+
+## copy the contenet of public key
+cat /root/.ssh/id_rsa.pub
+
+## Add the public key to the user level in git hub
+user profile icon -- settings-- ssh and gpg keys -- new ssh key
+title -- jenkins
+key 
+
+## add the private key to the jenkins
+dashboard -- manage jenkins -- credentials -- system -- global credentials -- add credentials 
+kind : 
+    ID : git
+    Username: git
+    Private Key: cat /root/.ssh/id_rsa 
+Create
+
+## install git on jenkins
+ apt install git
+ 
+## Install maven in global tools 
+dashboard -- manage jenkins -- Maven installations -- Add Maven
+
+Name: MVN3
+version: 3.9.9
+
+Name: MVN2
+version: 2.2.1
+
+Save
+
+## create a job with name java app
+new item
+
+## azure creds
+1	https://www.portal.azure.com	dev01@masterdevuser01hotmail.onmicrosoft.com	Palmeto@123 -- Achhay
+2	https://www.portal.azure.com	dev02@masterdevuser01hotmail.onmicrosoft.com	Palmeto@123 -- Arjun
+3	https://www.portal.azure.com	dev03@masterdevuser02hotmail.onmicrosoft.com	Palmeto@123 -- Suresh
+4	https://www.portal.azure.com	dev04@masterdevuser02hotmail.onmicrosoft.com	Palmeto@123
+5	https://www.portal.azure.com	dev05@masterdevuser03hotmail.onmicrosoft.com	Palmeto@123 -- Ajay
+6	https://www.portal.azure.com	dev06@masterdevuser03hotmail.onmicrosoft.com	Palmeto@123 -- Shubham
+7	https://www.portal.azure.com	dev07@masterdevuser04hotmail.onmicrosoft.com	Palmeto@123 -- Srichand
+8	https://www.portal.azure.com	dev08@masterdevuser04hotmail.onmicrosoft.com	Palmeto@123 -- Vibhuti
+9	https://www.portal.azure.com	dev09@masterdevuser05hotmail.onmicrosoft.com	Palmeto@123 -- shekhar
+10	https://www.portal.azure.com	dev10@masterdevuser05hotmail.onmicrosoft.com	Palmeto@123 -- Devansh
+11	https://www.portal.azure.com	dev11@masterdevuser06hotmail.onmicrosoft.com	Palmeto@123
+12	https://www.portal.azure.com	dev12@masterdevuser06hotmail.onmicrosoft.com	Palmeto@123
+13	https://www.portal.azure.com	dev13@masterdevuser07hotmail.onmicrosoft.com	Palmeto@123 -- Soma
+14	https://www.portal.azure.com	dev14@masterdevuser07hotmail.onmicrosoft.com	Palmeto@123 -- Ravi Prakash
+15	https://www.portal.azure.com	dev15@masterdevuser08hotmail.onmicrosoft.com	Palmeto@123 -- Rakesh
+16	https://www.portal.azure.com	dev16@masterdevuser08hotmail.onmicrosoft.com	Palmeto@123 -- Maneesh
+17	https://www.portal.azure.com	dev17@masterdevuser09hotmail.onmicrosoft.com	Palmeto@123
+18	https://www.portal.azure.com	dev18@masterdevuser09hotmail.onmicrosoft.com	Palmeto@123 -- Sudhir
+19	https://www.portal.azure.com	dev21@masterdevuser11hotmail.onmicrosoft.com	Palmeto@123 -- vergel
+20	https://www.portal.azure.com	dev22@masterdevuser11hotmail.onmicrosoft.com	Palmeto@123 -- sathish
+
+Build Steps
+    Invoke top-level Maven targets
+    Maven Version : MVN3
+    Goals: clean package
+    Advanced:
+        POM : api-gateway/
+        
+Post-build Actions:
+    Archive the artifacts
+    Files to archive: api-gateway/target/*.jar
+    
+    Publish JUnit test result report
+    Test report XMLs :  api-gateway/target/surefire-reports/*.xml
+    
+
+apt update
+apt upgrade -y
+apt install openjdk-21-jdk -y
+## install java 21
+apt install openjdk-21-jdk -y
+
+## install jenkins
+wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+apt update
+apt install jenkins -y
+
+## create new key pair
+ssh-keygen -t rsa
+
+## triggeres
+Select Build periodically
+*/2 * * * *
+
+Poll SCM
+*/2 * * * *
+
+## auto trigger
+GitHub hook trigger for GITScm polling
+
+## in github
+setting -- webhook - add webhook
+Payload URL *- http://{jenkins ip}:8080/github-webhook/
+Content type - application/json
+
+## java pipeline
+
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MVN3"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git credentialsId: 'git', url: '{your repo url}'
+
+                // Run Maven on a Unix agent.
+                sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway/ clean package"
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    junit stdioRetention: '', testResults: 'api-gateway/target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'api-gateway/target/*.jar', followSymlinks: false
+                }
+            }
+        }
+    }
+}
+
+
+## pipeline with multiple stages
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MVN3"
+    }
+
+    stages {
+        stage('pull') {
+            steps {
+                // Get some code from a GitHub repository
+                git credentialsId: 'git', url: '{your repo details}'
+                }
+        }
+        
+        stage('build') {
+            steps {
+                sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway/ clean package"
+            }
+        }
+
+        stage('publish') {
+            steps {
+                junit stdioRetention: '', testResults: 'api-gateway/target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'api-gateway/target/*.jar', followSymlinks: false
+            }
+        }
+    }
+}
+
+## put the above contnet on the github
+file Jenkinsfile
+
+## modify jenkins file in git 
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MVN3"
+    }
+
+    stages {
+        stage('pull') {
+            steps {
+                // Get some code from a GitHub repository
+                git credentialsId: 'git', url: 'git@github.com:sathishbob/jenkins_test.git'
+                }
+        }
+        
+        stage('build') {
+            steps {
+                sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway/ clean package"
+            }
+        }
+
+        stage('publish') {
+            steps {
+                junit stdioRetention: '', testResults: 'api-gateway/target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'api-gateway/target/*.jar', followSymlinks: false
+            }
+        }
+
+        stage('print') {
+            steps {
+                sh "echo testing"
+            }
+        }
+    }
+}
+
+## parameters in pipeline
+pipeline {
+    agent any
+    stages {
+        stage("setup parameter") {
+            steps {
+                script {
+                    properties([
+                        parameters([
+                            choice(
+                                choices: ["dev", "uat", "prod"],
+                                name: "ENVIRONMENT"
+                                ),
+                            string(
+                                defaultValue: "training",
+                                name: "STRING")
+                            ])
+                        ])
+                    }
+                }
+            }
+        stage("print parmeter") {
+            steps {
+                echo "choice parameter is $ENVIRONMENT"
+                echo "string parameter is $STRING"
+            }
+        }
+    }
+}
+
+
+## triggers in pipeline
+pipeline {
+    agent any
+    
+    triggers {
+        cron("*/5 * * * *")
+    }
+    
+    stages {
+        stage("setup parameter") {
+            steps {
+                script {
+                    properties([
+                        parameters([
+                            choice(
+                                choices: ["dev", "uat", "prod"],
+                                name: "ENVIRONMENT"
+                                ),
+                            string(
+                                defaultValue: "training",
+                                name: "STRING")
+                            ])
+                        ])
+                    }
+                }
+            }
+        stage("print parmeter") {
+            steps {
+                echo "choice parameter is $ENVIRONMENT"
+                echo "string parameter is $STRING"
+            }
+        }
+    }
+}
+
+## variables in jenkins
+pipeline {
+    agent any
+    environment {
+        TRAINING = "platform"
+        TOPIC = "jenkins"
+    }
+    stages {
+        stage('local') {
+            environment {
+                TOPIC = "cicd"
+            }
+            steps{
+                sh " echo training is ${TRAINING} and topic is ${TOPIC}"
+            }
+        }
+        stage('global') {
+            steps {
+                sh " echo training is ${TRAINING} and topic is ${TOPIC}"
+            }
+        }
+    }
+}
+
+## condition
+pipeline{
+    agent any
+    environment {
+        BUILD = "${currentBuild.getNumber() % 2}"
+    }
+    stages {
+        stage("normal") {
+            steps {
+                echo "Job with condition"
+            }
+        }
+        stage("condition") {
+            when {
+                environment name: "BUILD", value: "0"
+            }
+            steps {
+                echo "Build number is even" 
+            }
+        }
+    }
+}
+
+## loop
+def map = [training: "platform", topic: "jenkins", lab: "azure"]
+pipeline {
+    agent any
+    stages {
+        stage("loop") {
+            steps {
+                script {
+                    map.each { entry ->
+                    stage(entry.key) {
+                        echo "$entry.value"
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
+
+## parallel
+pipeline {
+    agent any
+    stages {
+        stage("Normal") {
+            steps {
+                echo " I am running sequentially"
+                sh 'date +"%T.%6N"'
+            }
+        }
+        stage("parallel") {
+            parallel {
+                stage("firefox") {
+                    steps {
+                        echo " I am testingusing firefox"
+                        sh 'date +"%T.%6N"'
+                    }
+                }
+                stage("chrome") {
+                    steps {
+                        echo " I am testing using chrome"
+                        sh 'date +"%T.%6N"'
+                    }
+                }
+                stage("edge") {
+                    steps {
+                        echo "I am testing using edge"
+                        sh 'date +"%T.%6N"'
+                    }
+                }
+            }
+        }
+    }
+}
+
+## approval
+pipeline {
+    agent any
+    stages {
+        stage("pull") {
+            steps {
+                echo "pulling code"
+            }
+        }
+        stage("build") {
+            steps {
+                echo "building code"
+            }
+        }
+        stage("approval") {
+            steps {
+                input "Please approve to proceed with deployment"
+            }
+        }
+        stage("deployment") {
+            steps {
+                echo "deploying application"
+            }
+        }
+    }
+}
+
+
+## email step
+ emailext body: "Please check the console output at $BUILD_URL/input for more information", to: "sathishbabudevops@gmail.com", subject: '$PROJECT_NAME is completed - Build number is $BUILD_NUMBER and build status is $BUILD_STATUS'
+ 
+## approval with timeout
+pipeline {
+    agent any
+    stages {
+        stage("pull") {
+            steps {
+                echo "pulling code"
+            }
+        }
+        stage("build") {
+            steps {
+                echo "building code"
+            }
+        }
+        stage("approval") {
+            options {
+                timeout(time:1, unit: 'MINUTES')
+            }
+            steps {
+                input "Please approve to proceed with deployment"
+            }
+        }
+        stage("deployment") {
+            steps {
+                echo "deploying application"
+            }
+        }
+    }
+}
+
+## adding a node to cluster
+Create a new vm in azure
+
+Login to VM and switch to root user
+sudo su
+
+## install java
+apt update
+apt upgrade -y
+apt install openjdk-21-jdk -y
+
+## add the node to the master
+
+Dashboard -- Manage Jenkins -- Nodes -- New Node
+    Node name: linux
+    Permanent Agent
+        Number of executors: 3
+        Remote root directory: /home/azureuser
+        Labels: linux
+        Usage: Only build job with label expression matching the node
+        Launch method : Launch agent via ssh
+            Host: {public ip of the node}
+            Credentials  - add 
+                Kind: Username with password
+                Username: azureuser
+                Password: {your password}
+                ID: linuxagent
+            Select the azureuser from dropdown
+            Host Key Verification Strategy: Non verifying verification statergy
+        save
+
+Dashboard -- Nodes -- linux -- Log
+    should see "Agent successfully connected and online"
+    
+## in git change the jenkins file to use linux agent
+pipeline {
+    agent {
+        label 'linux'
+    }
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MVN3"
+    }
+
+    stages {
+        stage('pull') {
+            steps {
+                // Get some code from a GitHub repository
+                git credentialsId: 'git', url: '{your repo}'
+                }
+        }
+        
+        stage('build') {
+            steps {
+                sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway/ clean package"
+            }
+        }
+
+        stage('publish') {
+            steps {
+                junit stdioRetention: '', testResults: 'api-gateway/target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'api-gateway/target/*.jar', followSymlinks: false
+            }
+        }
+
+        stage('print') {
+            steps {
+                sh "echo testing"
+            }
+        }
+    }
+}
+
+## run a stage on agent
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MVN3"
+    }
+
+    stages {
+        stage('pull') {
+            steps {
+                // Get some code from a GitHub repository
+                git credentialsId: 'git', url: 'git@github.com:sathishbob/jenkins_test.git'
+                }
+        }
+        
+        stage('build') {
+            steps {
+                sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway/ clean package"
+            }
+        }
+
+        stage('publish') {
+            steps {
+                junit stdioRetention: '', testResults: 'api-gateway/target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'api-gateway/target/*.jar', followSymlinks: false
+            }
+        }
+
+        stage('print') {
+            agent {
+                label 'linux'
+            }
+            steps {
+                sh "echo testing"
+            }
+        }
+    }
+}
+
+# docker
+## connect to jenkins machine
+sudo su
+
+## install docker
+### Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+### Add the repository to Apt sources:
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+### install docker 
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+## check docker installtion
+docker ps
