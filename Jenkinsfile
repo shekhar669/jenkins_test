@@ -12,7 +12,7 @@ pipeline {
 	    stage ('scm') {
 		    steps {
 			    // Get some code from a GitHub repository
-                git credentialsId: 'github', url: 'git@github.com:sathishbob/jenkins_test.git'
+                git credentialsId: 'github', url: 'git@github.com:shekhar669/jenkins_test.git'
 				}
 			}
 	    stage ('print stage') {
